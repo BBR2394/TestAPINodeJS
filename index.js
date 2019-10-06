@@ -39,9 +39,20 @@ con.connect(function(err) {
 });
 
 app.get('/', (req, res) => {
+    console.log("get answer simple");
 	var theDate = new Date()
 	res.send('Hello World!\nthis is a get request' + 'And it is :' + theDate)
 
+});
+
+app.get('/chevaux', (req, res) => {
+    console.log("dans le get chevaux");
+    con.query("SELECT * FROM Chevaux", function (err, result, fields) {
+	if (err) throw err;
+        console.log(result);
+	console.log(fields);
+	res.send(result);
+    });
 });
 
 app.post('/', function (req, res) {
