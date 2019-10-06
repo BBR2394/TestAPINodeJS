@@ -9,7 +9,7 @@ const express = require('express')
 const app = express();
 
 const glb_port = 5000
-const glb_host_mysql = "192.168.1.22"
+const glb_host_mysql = "localhost"
 const glb_usr_mysql = "root"
 const glb_pw_mysql = "Bonjour2394"
 
@@ -23,9 +23,13 @@ var con = mysql.createConnection({
 });
 
 con.connect(function(err) {
-	console.log("ici je vais me connecter");
-  if (err) throw err;
-  console.log("Connected!");
+    console.log("ici je vais me connecter");
+    if (err) {
+	console.log("THERE WAS AN ERROR:");
+	console.log(err);
+	throw err;
+    }
+    console.log("Connected!");
 });
 
 app.get('/', (req, res) => {
