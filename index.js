@@ -2,7 +2,7 @@
 * @Author: Baptiste Bertrand-Rapello
 * @Date:   2019-10-03 11:34:19
 * @Last Modified by:   Baptiste Bertrand-Rapello
-* @Last Modified time: 2019-10-06 21:45:36
+* @Last Modified time: 2019-10-08 08:39:13
 */
 
 const express = require('express')
@@ -17,26 +17,26 @@ const glb_db = "Chevaux_test1"
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: glb_host_mysql,
-  user: glb_usr_mysql,
-  password: glb_pw_mysql,
-  database: glb_db
-});
+// var con = mysql.createConnection({
+//   host: glb_host_mysql,
+//   user: glb_usr_mysql,
+//   password: glb_pw_mysql,
+//   database: glb_db
+// });
 
-con.connect(function(err) {
-    console.log("ici je vais me connecter");
-    if (err) {
-	console.log("THERE WAS AN ERROR:");
-	console.log(err);
-	throw err;
-    }
-    console.log("Connected!");
-    con.query("SELECT * FROM Chevaux", function (err, result, fields) {
-    if (err) throw err;
-    	console.log(result);
-  	});
-});
+// con.connect(function(err) {
+//     console.log("ici je vais me connecter");
+//     if (err) {
+// 	console.log("THERE WAS AN ERROR:");
+// 	console.log(err);
+// 	throw err;
+//     }
+//     console.log("Connected!");
+//     // con.query("SELECT * FROM Chevaux", function (err, result, fields) {
+//     //if (err) throw err;
+//     //	console.log(result);
+//   	//});
+// });
 
 app.get('/', (req, res) => {
     console.log("get answer simple");
@@ -47,17 +47,18 @@ app.get('/', (req, res) => {
 
 app.get('/chevaux', (req, res) => {
     console.log("dans le get chevaux");
-    con.query("SELECT * FROM Chevaux", function (err, result, fields) {
-	if (err) throw err;
-        console.log(result);
-	console.log(fields);
-	res.send(result);
-    });
+    // con.query("SELECT * FROM Chevaux", function (err, result, fields) {
+	// if (err) throw err;
+    //     console.log(result);
+	// console.log(fields);
+	// res.send(result);
+    // });
 });
 
 app.post('/', function (req, res) {
   res.send('Got a POST request')
 })
+
 
 app.put('/user', function (req, res) {
   res.send('Got a PUT request at /user')
